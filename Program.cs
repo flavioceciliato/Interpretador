@@ -54,7 +54,7 @@ internal class Program{
 
         //execute
         if (tree != null){
-            var interpreter = new LangInterpreter();
+            var interpreter = new LangInterpreter(semanticListener.Functions);
             interpreter.Visit(tree); 
         }
     }

@@ -1,19 +1,49 @@
 grammar Lang;
 
-prog: line+         # progLine
+prog: functions line+             # progLine
     ;
+
+functions: function functions
+        |
+        ;
+ 
+function: FUNCTION VAR '('params')' fnBlock;
+
+ 
+fnBlock:
+     '{' fnBody '}'                # fnBlockLine
+    ;
+
+fnBody:
+      line                      # fnBodyLine
+    | line fnBody               # fnBodyLineMore
+    | RETURN expr EOL           # fnReturnExprLine
+    | RETURN EOL                # fnReturnLine
+    ;
+
+params:  
+        VAR
+      | VAR SEP params
+      | // empty
+      ;
 
 line:
-      stmt EOL      # lineStmt
-    | ifst          # lineIf
-    | whilest       # lineWhile
-    | EOL           # lineEOL 
+	  stmt EOL          # lineStmt
+	| ifst              # lineIf
+	//| whilest         # lineWhile
+    //| forst           # lineFor
+	| EOL              # lineEOL
     ;
 
-stmt:
-      atrib         # stmtAtrib
-    | input         # stmtInput
-    | output        # stmtOutput
+funcInvoc:
+    VAR '(' params ')' # funcInvocLine
+    ;
+
+stmt: 
+      atrib             # stmtAtrib
+    | input             # stmtInput
+    | output            # stmtOutput    
+    | funcInvoc        # lineFuncInvoc
     ;
 
 input:
@@ -89,6 +119,7 @@ GT: '>';
 LE: '<=';
 GE: '>=';
 NE: '!=';
+SEP: ',';
 BOOL_TRUE: 'true';
 BOOL_FALSE: 'false';
 IF: 'IF';
@@ -96,6 +127,8 @@ ELSE: 'ELSE';
 WRITE: 'WRITE'; 
 READ: 'READ';
 WHILE: 'WHILE';
+FUNCTION: 'FUNCTION';
+RETURN: 'RETURN';
 STR: '"' ~["]* '"';
 EOL: ';';
 NUM: [0-9]+ (.([0-9]+))?;

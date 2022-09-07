@@ -1,16 +1,18 @@
-WRITE "Digite um Número: ";
-READ x;
-WRITE "Digite outro Número: ";
-READ y;
-WRITE b;
-IF (x > y){
-    WRITE "X é maior que Y";
-} ELSE{
-    WRITE "Y é maior que X";
+FUNCTION hello(){
+    WRITE "Hello World";
 }
 
-WHILE (x < 10) {
-    x = x + 1;
-    WRITE "X:";
+FUNCTION helloO(str){
+    x = "Hello" + str;
     WRITE x;
 }
+
+WRITE "Chamada de função";
+hello();
+hello();
+hello();
+hello();
+
+WRITE helloO("world");
+
+WRITE "Fim da chamada de função";
