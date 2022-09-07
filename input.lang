@@ -1,0 +1,15 @@
+WRITE "Digite um Número: ";
+READ x;
+WRITE "Digite outro Número: ";
+READ y;
+IF (x > y){
+    WRITE "X é maior que Y";
+} ELSE{
+    WRITE "Y é maior que X";
+}
+
+WHILE (x < 10) {
+    x = x + 1;
+    WRITE "X:";
+    WRITE x;
+}
