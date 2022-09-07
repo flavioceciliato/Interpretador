@@ -2,6 +2,7 @@ WRITE "Digite um Número: ";
 READ x;
 WRITE "Digite outro Número: ";
 READ y;
+WRITE b;
 IF (x > y){
     WRITE "X é maior que Y";
 } ELSE{
